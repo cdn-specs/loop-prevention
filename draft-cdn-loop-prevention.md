@@ -1,7 +1,6 @@
 ---
-title: TODO - Your title
-abbrev: TODO - Abbreviation
-docname: draft-todo-your-name-here
+title: CDN Loop Prevention
+docname: draft-cdn-loop-prevention-latest
 category: info
 
 ipr: trust200902
@@ -14,10 +13,10 @@ pi: [toc, sortrefs, symrefs]
 
 author:
  -
-    ins: T. Todo
-    name: Todo Fullname
-    organization: TODO Organization
-    email: todo@example.com
+    ins: M. Nottingham
+    name: Mark Nottingham
+    organization: Fastly
+    email: mnot@fastly.com
 
 normative:
   RFC2119:

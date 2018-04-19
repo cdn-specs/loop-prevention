@@ -99,7 +99,7 @@ The CDN-Loop request header field is intended to help a Content Delivery Network
 
 ~~~ abnf
 CDN-Loop = #cdn-id
-cdn_id   = token *( OWS ";" OWS parameter )
+cdn-id   = token *( OWS ";" OWS parameter )
 ~~~
 
 Conforming Content Delivery Networks SHOULD add a value to this header field to all requests they
@@ -119,7 +119,8 @@ CDN-Loop: baz-cdn; abc="123"; def="456", anotherCDN
 ~~~
 
 Note that the token syntax does not allow whitespace, DQUOTE or any of the characters
-"(),/:;<=>?@[\]{}". See {{!RFC7230}}, Section 3.2.6. Likewise, note the rules for when parameter values need to be quoted in {{!RFC7231}}, Section 3.1.1.
+"(),/:;<=>?@[\]{}". See {{!RFC7230}}, Section 3.2.6. Likewise, note the rules for when parameter
+values need to be quoted in {{!RFC7231}}, Section 3.1.1.
 
 To be effective, intermediaries -- including Content Delivery Networks -- MUST NOT remove this
 header field, and servers (including intermediaries) SHOULD NOT use it for other purposes.

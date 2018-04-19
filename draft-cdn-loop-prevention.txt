@@ -4,8 +4,9 @@
 
 HTTP Working Group                                         M. Nottingham
 Internet-Draft                                                    Fastly
-Intended status: Informational                            April 16, 2018
-Expires: October 18, 2018
+Intended status: Informational                               N. Sullivan
+Expires: October 21, 2018                                     Cloudflare
+                                                          April 19, 2018
 
 
                           CDN Loop Prevention
@@ -31,7 +32,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 18, 2018.
+   This Internet-Draft will expire on October 21, 2018.
 
 Copyright Notice
 
@@ -52,8 +53,7 @@ Copyright Notice
 
 
 
-
-Nottingham              Expires October 18, 2018                [Page 1]
+Nottingham & Sullivan   Expires October 21, 2018                [Page 1]
 
 Internet-Draft             CDN Loop Prevention                April 2018
 
@@ -68,7 +68,7 @@ Table of Contents
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
      6.2.  Informative References  . . . . . . . . . . . . . . . . .   5
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Nottingham              Expires October 18, 2018                [Page 2]
+Nottingham & Sullivan   Expires October 21, 2018                [Page 2]
 
 Internet-Draft             CDN Loop Prevention                April 2018
 
@@ -165,7 +165,7 @@ Internet-Draft             CDN Loop Prevention                April 2018
 
 
 
-Nottingham              Expires October 18, 2018                [Page 3]
+Nottingham & Sullivan   Expires October 21, 2018                [Page 3]
 
 Internet-Draft             CDN Loop Prevention                April 2018
 
@@ -221,7 +221,7 @@ Internet-Draft             CDN Loop Prevention                April 2018
 
 
 
-Nottingham              Expires October 18, 2018                [Page 4]
+Nottingham & Sullivan   Expires October 21, 2018                [Page 4]
 
 Internet-Draft             CDN Loop Prevention                April 2018
 
@@ -235,7 +235,7 @@ Internet-Draft             CDN Loop Prevention                April 2018
               DOI 10.14722/ndss.2016.23442, February 2016,
               <http://www.icir.org/vern/papers/cdn-loops.NDSS16.pdf>.
 
-Author's Address
+Authors' Addresses
 
    Mark Nottingham
    Fastly
@@ -243,6 +243,10 @@ Author's Address
    Email: mnot@fastly.com
 
 
+   Nick Sullivan
+   Cloudflare
+
+   Email: nick@cloudflare.com
 
 
 
@@ -273,8 +277,4 @@ Author's Address
 
 
 
-
-
-
-
-Nottingham              Expires October 18, 2018                [Page 5]
+Nottingham & Sullivan   Expires October 21, 2018                [Page 5]

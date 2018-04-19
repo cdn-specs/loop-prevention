@@ -118,7 +118,7 @@ CDN-Loop: baz-cdn
 ~~~
 
 Note that the value's syntax does not allow whitespace, DQUOTE or any of the characters
-"(),/:;<=>?@[\]{}"). See {{!RFC7230}}, Section 3.2.6.
+"(),/:;<=>?@[\]{}". See {{!RFC7230}}, Section 3.2.6.
 
 To be effective, intermediaries -- including Content Delivery Networks -- MUST NOT remove this
 header field, and servers (including intermediaries) SHOULD NOT use it for other purposes.

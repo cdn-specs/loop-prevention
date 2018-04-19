@@ -136,7 +136,7 @@ Internet-Draft             CDN Loop Prevention                April 2018
    through that CDN's servers, to prevent loops.
 
    CDN-Loop = #cdn-id
-   cdn_id   = token *( OWS ";" OWS parameter )
+   cdn-id   = token *( OWS ";" OWS parameter )
 
    Conforming Content Delivery Networks SHOULD add a value to this
    header field to all requests they generate or forward (creating the

@@ -395,23 +395,24 @@ address {
 <a href="#rfc.section.2">2.</a> <a href="#conventions-and-definitions" id="conventions-and-definitions">Conventions and Definitions</a>
 </h1>
 <p id="rfc.section.2.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.</p>
-<p id="rfc.section.2.p.2">This specification uses the Augmented Backus-Naur Form (ABNF) notation of <a href="#RFC5234" class="xref">[RFC5234]</a> with a list extension, defined in Section 7 of <a href="#RFC7230" class="xref">[RFC7230]</a>, that allows for compact definition of comma-separated lists using a &#8216;#&#8217; operator (similar to how the &#8216;*&#8217; operator indicates repetition).</p>
+<p id="rfc.section.2.p.2">This specification uses the Augmented Backus-Naur Form (ABNF) notation of <a href="#RFC5234" class="xref">[RFC5234]</a> with a list extension, defined in Section 7 of <a href="#RFC7230" class="xref">[RFC7230]</a>, that allows for compact definition of comma-separated lists using a &#8216;#&#8217; operator (similar to how the &#8216;*&#8217; operator indicates repetition).  Additionally, it uses the OWS rule from <a href="#RFC7230" class="xref">[RFC7230]</a> and the parameter rule from <a href="#RFC7231" class="xref">[RFC7231]</a>.</p>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#the-cdn-loop-request-header-field" id="the-cdn-loop-request-header-field">The CDN-Loop Request Header Field</a>
 </h1>
 <p id="rfc.section.3.p.1">The CDN-Loop request header field is intended to help a Content Delivery Network identify when an incoming request has already passed through that CDN&#8217;s servers, to prevent loops.</p>
 <pre>
-CDN-Loop = #token
+CDN-Loop = #cdn-id
+cdn_id   = token *( OWS ";" OWS parameter )
 </pre>
 <p id="rfc.section.3.p.2">Conforming Content Delivery Networks SHOULD add a value to this header field to all requests they generate or forward (creating the header if necessary).</p>
-<p id="rfc.section.3.p.3">The value added is implementation-dependent; it might identify the CDN as a whole (e.g, &#8220;example-cdn&#8221;), or an individual node in that CDN (e.g., &#8220;host1234.example.net&#8221;), or a stage in processing (e.g., &#8220;example-cdn-backend&#8221;). Chosen values SHOULD be unique enough that a collision with other CDNs is unlikely.</p>
+<p id="rfc.section.3.p.3">The token identifies the CDN as a whole. Chosen token values SHOULD be unique enough that a collision with other CDNs is unlikely. Optionally, the token can have semicolon-separated key/value parameters, to accommodate additional information for the CDN&#8217;s use.</p>
 <p id="rfc.section.3.p.4">As with all HTTP headers defined using the &#8220;#&#8221; rule, the CDN-Loop header can be added to by comma-separating values, or by creating a new header field with the desired value.</p>
 <p id="rfc.section.3.p.5">For example:</p>
 <pre>
-CDN-Loop: FooCDN, host123.barcdn.example.net
-CDN-Loop: baz-cdn
+CDN-Loop: FooCDN, barcdn; host="foo123.bar.cdn"
+CDN-Loop: baz-cdn; abc="123"; def="456", anotherCDN
 </pre>
-<p id="rfc.section.3.p.6">Note that the value&#8217;s syntax does not allow whitespace, DQUOTE or any of the characters &#8220;(),/:;&lt;=&gt;?@[]{}&#8221;). See <a href="#RFC7230" class="xref">[RFC7230]</a>, Section 3.2.6.</p>
+<p id="rfc.section.3.p.6">Note that the token syntax does not allow whitespace, DQUOTE or any of the characters &#8220;(),/:;&lt;=&gt;?@[]{}&#8221;. See <a href="#RFC7230" class="xref">[RFC7230]</a>, Section 3.2.6. Likewise, note the rules for when parameter values need to be quoted in <a href="#RFC7231" class="xref">[RFC7231]</a>, Section 3.1.1.</p>
 <p id="rfc.section.3.p.7">To be effective, intermediaries &#8211; including Content Delivery Networks &#8211; MUST NOT remove this header field, and servers (including intermediaries) SHOULD NOT use it for other purposes.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
@@ -449,6 +450,11 @@ CDN-Loop: baz-cdn
 <td class="reference"><b id="RFC7230">[RFC7230]</b></td>
 <td class="top">
 <a>Fielding, R.</a> and <a>J. Reschke</a>, "<a href="https://tools.ietf.org/html/rfc7230">Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</a>", RFC 7230, DOI 10.17487/RFC7230, June 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7231">[RFC7231]</b></td>
+<td class="top">
+<a>Fielding, R.</a> and <a>J. Reschke</a>, "<a href="https://tools.ietf.org/html/rfc7231">Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a>", RFC 7231, DOI 10.17487/RFC7231, June 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC8174">[RFC8174]</b></td>

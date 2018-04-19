@@ -126,7 +126,8 @@ Internet-Draft             CDN Loop Prevention                April 2018
    notation of [RFC5234] with a list extension, defined in Section 7 of
    [RFC7230], that allows for compact definition of comma-separated
    lists using a '#' operator (similar to how the '*' operator indicates
-   repetition).
+   repetition).  Additionally, it uses the OWS rule from [RFC7230] and
+   the parameter rule from [RFC7231].
 
 3.  The CDN-Loop Request Header Field
 
@@ -134,17 +135,17 @@ Internet-Draft             CDN Loop Prevention                April 2018
    Delivery Network identify when an incoming request has already passed
    through that CDN's servers, to prevent loops.
 
-   CDN-Loop = #token
+   CDN-Loop = #cdn-id
+   cdn_id   = token *( OWS ";" OWS parameter )
 
    Conforming Content Delivery Networks SHOULD add a value to this
    header field to all requests they generate or forward (creating the
    header if necessary).
 
-   The value added is implementation-dependent; it might identify the
-   CDN as a whole (e.g, "example-cdn"), or an individual node in that
-   CDN (e.g., "host1234.example.net"), or a stage in processing (e.g.,
-   "example-cdn-backend").  Chosen values SHOULD be unique enough that a
-   collision with other CDNs is unlikely.
+   The token identifies the CDN as a whole.  Chosen token values SHOULD
+   be unique enough that a collision with other CDNs is unlikely.
+   Optionally, the token can have semicolon-separated key/value
+   parameters, to accommodate additional information for the CDN's use.
 
    As with all HTTP headers defined using the "#" rule, the CDN-Loop
    header can be added to by comma-separating values, or by creating a
@@ -152,15 +153,14 @@ Internet-Draft             CDN Loop Prevention                April 2018
 
    For example:
 
-   CDN-Loop: FooCDN, host123.barcdn.example.net
-   CDN-Loop: baz-cdn
+   CDN-Loop: FooCDN, barcdn; host="foo123.bar.cdn"
+   CDN-Loop: baz-cdn; abc="123"; def="456", anotherCDN
 
-   Note that the value's syntax does not allow whitespace, DQUOTE or any
-   of the characters "(),/:;<=>?@[]{}").  See [RFC7230], Section 3.2.6.
+   Note that the token syntax does not allow whitespace, DQUOTE or any
+   of the characters "(),/:;<=>?@[]{}".  See [RFC7230], Section 3.2.6.
+   Likewise, note the rules for when parameter values need to be quoted
+   in [RFC7231], Section 3.1.1.
 
-   To be effective, intermediaries - including Content Delivery Networks
-   - MUST NOT remove this header field, and servers (including
-   intermediaries) SHOULD NOT use it for other purposes.
 
 
 
@@ -169,6 +169,10 @@ Nottingham & Sullivan   Expires October 21, 2018                [Page 3]
 
 Internet-Draft             CDN Loop Prevention                April 2018
 
+
+   To be effective, intermediaries - including Content Delivery Networks
+   - MUST NOT remove this header field, and servers (including
+   intermediaries) SHOULD NOT use it for other purposes.
 
 4.  Security Considerations
 
@@ -214,10 +218,6 @@ Internet-Draft             CDN Loop Prevention                April 2018
               RFC 7230, DOI 10.17487/RFC7230, June 2014,
               <https://www.rfc-editor.org/info/rfc7230>.
 
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
 
 
 
@@ -225,6 +225,15 @@ Nottingham & Sullivan   Expires October 21, 2018                [Page 4]
 
 Internet-Draft             CDN Loop Prevention                April 2018
 
+
+   [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
+              Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
+              DOI 10.17487/RFC7231, June 2014,
+              <https://www.rfc-editor.org/info/rfc7231>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
 6.2.  Informative References
 
@@ -247,15 +256,6 @@ Authors' Addresses
    Cloudflare
 
    Email: nick@cloudflare.com
-
-
-
-
-
-
-
-
-
 
 
 

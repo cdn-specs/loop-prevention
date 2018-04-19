@@ -91,34 +91,35 @@ shown here.
 This specification uses the Augmented Backus-Naur Form (ABNF) notation of {{!RFC5234}} with a list
 extension, defined in Section 7 of {{!RFC7230}}, that allows for compact definition of
 comma-separated lists using a ‘#’ operator (similar to how the ‘*’ operator indicates repetition).
+Additionally, it uses the OWS rule from {{!RFC7230}} and the parameter rule from {{!RFC7231}}.
 
 # The CDN-Loop Request Header Field
 
 The CDN-Loop request header field is intended to help a Content Delivery Network identify when an incoming request has already passed through that CDN's servers, to prevent loops.
 
 ~~~ abnf
-CDN-Loop = #token
+CDN-Loop = #cdn-id
+cdn_id   = token *( OWS ";" OWS parameter )
 ~~~
 
 Conforming Content Delivery Networks SHOULD add a value to this header field to all requests they
 generate or forward (creating the header if necessary).
 
-The value added is implementation-dependent; it might identify the CDN as a whole (e.g,
-"example-cdn"), or an individual node in that CDN (e.g., "host1234.example.net"), or a stage in
-processing (e.g., "example-cdn-backend"). Chosen values SHOULD be unique enough that a collision
-with other CDNs is unlikely.
+The token identifies the CDN as a whole. Chosen token values SHOULD be unique enough that a
+collision with other CDNs is unlikely. Optionally, the token can have semicolon-separated key/value
+parameters, to accommodate additional information for the CDN's use.
 
 As with all HTTP headers defined using the "#" rule, the CDN-Loop header can be added to by comma-separating values, or by creating a new header field with the desired value.
 
 For example:
 
 ~~~ example
-CDN-Loop: FooCDN, host123.barcdn.example.net
-CDN-Loop: baz-cdn
+CDN-Loop: FooCDN, barcdn; host="foo123.bar.cdn"
+CDN-Loop: baz-cdn; abc="123"; def="456", anotherCDN
 ~~~
 
-Note that the value's syntax does not allow whitespace, DQUOTE or any of the characters
-"(),/:;<=>?@[\]{}". See {{!RFC7230}}, Section 3.2.6.
+Note that the token syntax does not allow whitespace, DQUOTE or any of the characters
+"(),/:;<=>?@[\]{}". See {{!RFC7230}}, Section 3.2.6. Likewise, note the rules for when parameter values need to be quoted in {{!RFC7231}}, Section 3.1.1.
 
 To be effective, intermediaries -- including Content Delivery Networks -- MUST NOT remove this
 header field, and servers (including intermediaries) SHOULD NOT use it for other purposes.

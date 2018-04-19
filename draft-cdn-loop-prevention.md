@@ -17,6 +17,11 @@ author:
     name: Mark Nottingham
     organization: Fastly
     email: mnot@fastly.com
+ -
+    ins: N. Sullivan
+    name: Nick Sullivan
+    organization: Cloudflare
+    email: nick@cloudflare.com
 
 normative:
   RFC2119:

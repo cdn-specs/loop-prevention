@@ -13,6 +13,11 @@ pi: [toc, sortrefs, symrefs]
 
 author:
  -
+    ins: S. Ludin
+    name: Stephen Ludin
+    organization: Akamai Technologies
+    email: sludin@akamai.com
+ -
     ins: M. Nottingham
     name: Mark Nottingham
     organization: Fastly

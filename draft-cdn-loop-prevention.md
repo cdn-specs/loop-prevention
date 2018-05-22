@@ -71,8 +71,9 @@ As a result, it is not unknown for CDNs to be configured in a "loop" accidentall
 is achieved through a combination of DNS and forwarding rules, and site configurations are
 sometimes complex and managed by several parties.
 
-When this happens, it is difficult to debug, and can be used as an attack vector (e.g., see
-{{loop-attack}}).
+When this happens, it is difficult to debug. Additionally, it sometimes isn't accidental; loops
+between multiple CDNs be used as an attack vector (e.g., see {{loop-attack}}), especially if one
+CDN unintentionally strips the loop detection headers of another.
 
 HTTP defines the Via header field in {{!RFC7230}}, Section 5.7.1 for "tracking message forwards,
 avoiding request loops, and identifying the protocol capabilities of senders along the
@@ -128,7 +129,8 @@ Note that the token syntax does not allow whitespace, DQUOTE or any of the chara
 values need to be quoted in {{!RFC7231}}, Section 3.1.1.
 
 To be effective, intermediaries -- including Content Delivery Networks -- MUST NOT remove this
-header field, and servers (including intermediaries) SHOULD NOT use it for other purposes.
+header field, or allow it to be removed (e.g., through configuration) and servers (including
+intermediaries) SHOULD NOT use it for other purposes.
 
 
 # Security Considerations

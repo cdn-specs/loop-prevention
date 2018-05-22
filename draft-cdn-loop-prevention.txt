@@ -2,11 +2,13 @@
 
 
 
-HTTP Working Group                                         M. Nottingham
-Internet-Draft                                                    Fastly
-Intended status: Informational                               N. Sullivan
-Expires: October 21, 2018                                     Cloudflare
-                                                          April 19, 2018
+HTTP Working Group                                              S. Ludin
+Internet-Draft                                       Akamai Technologies
+Intended status: Informational                             M. Nottingham
+Expires: November 23, 2018                                        Fastly
+                                                             N. Sullivan
+                                                              Cloudflare
+                                                            May 22, 2018
 
 
                           CDN Loop Prevention
@@ -32,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 21, 2018.
+   This Internet-Draft will expire on November 23, 2018.
 
 Copyright Notice
 
@@ -51,11 +53,9 @@ Copyright Notice
 
 
 
-
-
-Nottingham & Sullivan   Expires October 21, 2018                [Page 1]
+Ludin, et al.           Expires November 23, 2018               [Page 1]
 
-Internet-Draft             CDN Loop Prevention                April 2018
+Internet-Draft             CDN Loop Prevention                  May 2018
 
 
 Table of Contents
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Nottingham & Sullivan   Expires October 21, 2018                [Page 2]
+Ludin, et al.           Expires November 23, 2018               [Page 2]
 
-Internet-Draft             CDN Loop Prevention                April 2018
+Internet-Draft             CDN Loop Prevention                  May 2018
 
 
 2.  Conventions and Definitions
@@ -165,9 +165,9 @@ Internet-Draft             CDN Loop Prevention                April 2018
 
 
 
-Nottingham & Sullivan   Expires October 21, 2018                [Page 3]
+Ludin, et al.           Expires November 23, 2018               [Page 3]
 
-Internet-Draft             CDN Loop Prevention                April 2018
+Internet-Draft             CDN Loop Prevention                  May 2018
 
 
    To be effective, intermediaries - including Content Delivery Networks
@@ -221,9 +221,9 @@ Internet-Draft             CDN Loop Prevention                April 2018
 
 
 
-Nottingham & Sullivan   Expires October 21, 2018                [Page 4]
+Ludin, et al.           Expires November 23, 2018               [Page 4]
 
-Internet-Draft             CDN Loop Prevention                April 2018
+Internet-Draft             CDN Loop Prevention                  May 2018
 
 
    [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
@@ -245,6 +245,12 @@ Internet-Draft             CDN Loop Prevention                April 2018
               <http://www.icir.org/vern/papers/cdn-loops.NDSS16.pdf>.
 
 Authors' Addresses
+
+   Stephen Ludin
+   Akamai Technologies
+
+   Email: sludin@akamai.com
+
 
    Mark Nottingham
    Fastly
@@ -271,10 +277,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-Nottingham & Sullivan   Expires October 21, 2018                [Page 5]
+Ludin, et al.           Expires November 23, 2018               [Page 5]

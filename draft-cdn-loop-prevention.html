@@ -395,7 +395,7 @@ address {
 <p id="rfc.section.1.p.1">In modern deployments of HTTP servers, it is common to interpose Content Delivery Networks (CDNs) to improve end-user perceived latency, reduce operational costs, and improve scalability and reliability of services.</p>
 <p id="rfc.section.1.p.2">Often, more than one CDN is in use by any one server; this happens for a variety of reasons, such as cost savings, arranging for failover should one CDN have issues, or to directly compare their services.</p>
 <p id="rfc.section.1.p.3">As a result, it is not unknown for CDNs to be configured in a &#8220;loop&#8221; accidentally; because routing is achieved through a combination of DNS and forwarding rules, and site configurations are sometimes complex and managed by several parties.</p>
-<p id="rfc.section.1.p.4">When this happens, it is difficult to debug, and can be used as an attack vector (e.g., see <a href="#loop-attack" class="xref">[loop-attack]</a>).</p>
+<p id="rfc.section.1.p.4">When this happens, it is difficult to debug. Additionally, it sometimes isn&#8217;t accidental; loops between multiple CDNs be used as an attack vector (e.g., see <a href="#loop-attack" class="xref">[loop-attack]</a>), especially if one CDN unintentionally strips the loop detection headers of another.</p>
 <p id="rfc.section.1.p.5">HTTP defines the Via header field in <a href="#RFC7230" class="xref">[RFC7230]</a>, Section 5.7.1 for &#8220;tracking message forwards, avoiding request loops, and identifying the protocol capabilities of senders along the request/response chain.&#8221;</p>
 <p id="rfc.section.1.p.6">In theory, Via could be used to identify these loops. However, in practice it is not used in this fashion, because some HTTP servers use Via for other purposes &#8211; in particular, some implementations disable some HTTP/1.1 features when the Via header is present.</p>
 <p id="rfc.section.1.p.7">This specification defines the CDN-Loop request header field for HTTP, to address this shortcoming.</p>
@@ -421,7 +421,7 @@ CDN-Loop: FooCDN, barcdn; host="foo123.bar.cdn"
 CDN-Loop: baz-cdn; abc="123"; def="456", anotherCDN
 </pre>
 <p id="rfc.section.3.p.6">Note that the token syntax does not allow whitespace, DQUOTE or any of the characters &#8220;(),/:;&lt;=&gt;?@[]{}&#8221;. See <a href="#RFC7230" class="xref">[RFC7230]</a>, Section 3.2.6. Likewise, note the rules for when parameter values need to be quoted in <a href="#RFC7231" class="xref">[RFC7231]</a>, Section 3.1.1.</p>
-<p id="rfc.section.3.p.7">To be effective, intermediaries &#8211; including Content Delivery Networks &#8211; MUST NOT remove this header field, and servers (including intermediaries) SHOULD NOT use it for other purposes.</p>
+<p id="rfc.section.3.p.7">To be effective, intermediaries &#8211; including Content Delivery Networks &#8211; MUST NOT remove this header field, or allow it to be removed (e.g., through configuration) and servers (including intermediaries) SHOULD NOT use it for other purposes.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>

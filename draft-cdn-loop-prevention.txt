@@ -87,8 +87,10 @@ Table of Contents
    DNS and forwarding rules, and site configurations are sometimes
    complex and managed by several parties.
 
-   When this happens, it is difficult to debug, and can be used as an
-   attack vector (e.g., see [loop-attack]).
+   When this happens, it is difficult to debug.  Additionally, it
+   sometimes isn't accidental; loops between multiple CDNs be used as an
+   attack vector (e.g., see [loop-attack]), especially if one CDN
+   unintentionally strips the loop detection headers of another.
 
    HTTP defines the Via header field in [RFC7230], Section 5.7.1 for
    "tracking message forwards, avoiding request loops, and identifying
@@ -102,8 +104,6 @@ Table of Contents
 
    This specification defines the CDN-Loop request header field for
    HTTP, to address this shortcoming.
-
-
 
 
 
@@ -171,8 +171,9 @@ Internet-Draft             CDN Loop Prevention                  May 2018
 
 
    To be effective, intermediaries - including Content Delivery Networks
-   - MUST NOT remove this header field, and servers (including
-   intermediaries) SHOULD NOT use it for other purposes.
+   - MUST NOT remove this header field, or allow it to be removed (e.g.,
+   through configuration) and servers (including intermediaries) SHOULD
+   NOT use it for other purposes.
 
 4.  Security Considerations
 
@@ -217,7 +218,6 @@ Internet-Draft             CDN Loop Prevention                  May 2018
               Protocol (HTTP/1.1): Message Syntax and Routing",
               RFC 7230, DOI 10.17487/RFC7230, June 2014,
               <https://www.rfc-editor.org/info/rfc7230>.
-
 
 
 
